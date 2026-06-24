@@ -11,7 +11,7 @@ urlpatterns = [
      path('login/',LoginView.as_view(), name='login'),
      path('refresh/',TokenRefreshView.as_view(), name='refresh'),
      path("create-admin/",CreateAdminView.as_view()),
-     path("test/", lambda request: Response({"ok":"yes"}))
+     path("test/", lambda request: Response({"ok":"yes"})),
 
      path('debug-login/',DebugLoginView.as_view() ),
 ]

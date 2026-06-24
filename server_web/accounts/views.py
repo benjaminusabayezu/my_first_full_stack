@@ -105,14 +105,12 @@ class PasswordCheckView(APIView):
 class CheckUserRoleView(APIView):
     def get(self, request):
 
-        user = User.objects.get(username="superuser")
+        users = User.objects.all().values(
+            "id",
+            "username",
+            "email",
+            "role",
+            "is_superuser"
+        )
 
-        from django.db import connection
-
-        return Response({
-            "username": user.username,
-            "role": user.role,
-            "email": user.email,
-            "db_name": connection.settings_dict["NAME"],
-            "db_host": connection.settings_dict["HOST"],
-        })
+        return Response(list(users))

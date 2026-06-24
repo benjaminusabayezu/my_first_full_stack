@@ -78,3 +78,18 @@ class DebugLoginView(APIView):
             "username_received": username,
             "user": str(user)
         })
+    
+class PasswordCheckView(APIView):
+           def post(self, request):
+
+              username = request.data.get("username")
+              password = request.data.get("password")
+
+              user = User.objects.get(username=username)
+
+              return Response({
+               "username": user.username,
+               "stored_password": user.password[:20],
+               "check_password": user.check_password(password),
+               "is_active": user.is_active,
+        })

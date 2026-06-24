@@ -1,6 +1,6 @@
 from django.urls import path
 from rest_framework.response import Response
-from .views import RegisterView,LoginView, CreateAdminView, DebugLoginView
+from .views import RegisterView,LoginView, CreateAdminView,DebugLoginView , PasswordCheckView
 from rest_framework_simplejwt.views import(
     
     TokenRefreshView
@@ -14,4 +14,5 @@ urlpatterns = [
      path("test/", lambda request: Response({"ok":"yes"})),
 
      path('debug-login/',DebugLoginView.as_view() ),
+     path("password-check/", PasswordCheckView.as_view()),
 ]

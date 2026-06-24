@@ -25,5 +25,7 @@ urlpatterns = [
     path('API/students/', include("students.urls")),
     path('API/analytics/', include("analytics.urls")),
     path('API/settings/',include("settings_app.urls")),
+
+   
     
 ]

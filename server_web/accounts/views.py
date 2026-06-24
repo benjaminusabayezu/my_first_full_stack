@@ -107,9 +107,12 @@ class CheckUserRoleView(APIView):
 
         user = User.objects.get(username="superuser")
 
+        from django.db import connection
+
         return Response({
             "username": user.username,
             "role": user.role,
-            "is_superuser": user.is_superuser,
-            "database": user._state.db
+            "email": user.email,
+            "db_name": connection.settings_dict["NAME"],
+            "db_host": connection.settings_dict["HOST"],
         })

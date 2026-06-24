@@ -1,6 +1,6 @@
 from django.urls import path
 from rest_framework.response import Response
-from .views import RegisterView,LoginView, CreateAdminView,DebugLoginView , PasswordCheckView,CheckUserRoleView
+from .views import DBCheckView, RegisterView,LoginView, CreateAdminView,DebugLoginView , PasswordCheckView,CheckUserRoleView
 from rest_framework_simplejwt.views import(
     
     TokenRefreshView
@@ -16,4 +16,5 @@ urlpatterns = [
      path('debug-login/',DebugLoginView.as_view() ),
      path("password-check/", PasswordCheckView.as_view()),
      path("check-role/", CheckUserRoleView.as_view()),
+     path("db-check/", DBCheckView.as_view()),
 ]

@@ -1,3 +1,4 @@
+from django.db import connection
 from rest_framework import generics
 from .models import User
 from .serializers import RegisterSerializer
@@ -114,3 +115,13 @@ class CheckUserRoleView(APIView):
         )
 
         return Response(list(users))
+
+class DBCheckView(APIView):
+    def get(self, request):
+
+        return Response({
+            "NAME": connection.settings_dict["NAME"],
+            "HOST": connection.settings_dict["HOST"],
+            "USER": connection.settings_dict["USER"],
+            "PORT": connection.settings_dict["PORT"],
+        })

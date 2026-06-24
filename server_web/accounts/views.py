@@ -94,3 +94,14 @@ class PasswordCheckView(APIView):
                "check_password": user.check_password(password),
                "is_active": user.is_active,
         })
+class CheckUserRoleView(APIView):
+    def get(self, request):
+
+        user = User.objects.get(username="superuser")
+
+        return Response({
+            "username": user.username,
+            "role": user.role,
+            "is_superuser": user.is_superuser,
+            "database": user._state.db
+        })

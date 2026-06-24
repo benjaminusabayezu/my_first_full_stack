@@ -9,5 +9,5 @@ urlpatterns = [
      path('register/',RegisterView.as_view(), name='register'),
      path('login/',LoginView.as_view(), name='login'),
      path('refresh/',TokenRefreshView.as_view(), name='refresh'),
-     path("create_admin/",CreateAdminView.as_view()),
+     path("create-admin/",CreateAdminView.as_view()),
 ]

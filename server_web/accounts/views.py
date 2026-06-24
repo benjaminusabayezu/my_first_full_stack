@@ -43,23 +43,24 @@ class CreateAdminView(APIView):
         email = request.data.get("email")
         password = request.data.get("password")
 
-
-        if User.objects.filter(username=username).exists():
-            return Response({
-                "message": "User already exists"
-            })
-
-
-        user = User.objects.create_superuser(
+        user, created = User.objects.get_or_create(
             username=username,
-            email=email,
-            password=password
+            defaults={
+                "email": email,
+                "role": "admin"
+            }
         )
 
+        user.set_password(password)
+        user.is_staff = True
+        user.is_superuser = True
+        user.is_active = True
+        user.save()
 
         return Response({
-            "message": "Admin created",
-            "username": user.username
+            "message": "Admin password reset",
+            "username": user.username,
+            "created": created
         })
     
 class DebugLoginView(APIView):

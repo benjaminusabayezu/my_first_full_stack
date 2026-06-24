@@ -25,6 +25,7 @@ import VideoSection from "./components/video_page/VideoSection";
 import StudentsPage from "./pages/admin/StudentsPage";
 import AnalyticsPage from "./pages/admin/AnalyticsPage";
 import SettingsPage from "./pages/admin/SettingsPage";
+import CreateAdmin from "./pages/admin/CreateAdmin";
 
 function App() {
   return (
@@ -61,6 +62,7 @@ function App() {
        <Route path="/admin/students" element={<StudentsPage />} />
        <Route path="/admin/analytics" element={<AnalyticsPage />} />
        <Route path="/admin/settings" element={<SettingsPage />} />
+       <Route path="/create-admin" element={<CreateAdmin />} />
     </Routes>
   );
 }

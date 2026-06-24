@@ -47,19 +47,24 @@ class CreateAdminView(APIView):
             username=username,
             defaults={
                 "email": email,
-                "role": "admin"
             }
         )
 
-        user.set_password(password)
+        user.email = email
+        user.role = "admin"
         user.is_staff = True
         user.is_superuser = True
         user.is_active = True
+
+        if password:
+            user.set_password(password)
+
         user.save()
 
         return Response({
-            "message": "Admin password reset",
+            "message": "Admin updated",
             "username": user.username,
+            "role": user.role,
             "created": created
         })
     

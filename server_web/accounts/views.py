@@ -39,34 +39,37 @@ class CreateAdminView(APIView):
 
     def post(self, request):
 
-        username = request.data.get("username")
-        email = request.data.get("email")
-        password = request.data.get("password")
+        try:
+            username = request.data.get("username")
+            email = request.data.get("email")
+            password = request.data.get("password")
 
-        user, created = User.objects.get_or_create(
-            username=username,
-            defaults={
-                "email": email,
-            }
-        )
+            user, created = User.objects.get_or_create(
+                username=username
+            )
 
-        user.email = email
-        user.role = "admin"
-        user.is_staff = True
-        user.is_superuser = True
-        user.is_active = True
+            user.email = email
+            user.role = "admin"
+            user.is_staff = True
+            user.is_superuser = True
+            user.is_active = True
 
-        if password:
-            user.set_password(password)
+            if password:
+                user.set_password(password)
 
-        user.save()
+            user.save()
 
-        return Response({
-            "message": "Admin updated",
-            "username": user.username,
-            "role": user.role,
-            "created": created
-        })
+            return Response({
+                "message": "Admin updated",
+                "username": user.username,
+                "role": user.role,
+                "created": created
+            })
+
+        except Exception as e:
+            return Response({
+                "error": str(e)
+            }, status=500)
     
 class DebugLoginView(APIView):
     def post(self, request):

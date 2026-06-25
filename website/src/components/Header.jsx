@@ -126,28 +126,28 @@ try {
   setLoading(true);
   setMessage("Signing in...");
 
-  console.log("Sending login request:", {
-    username: form.username,
-    password: form.password,
-  });
+  // console.log("Sending login request:", {
+  //   username: form.username,
+  //   password: form.password,
+  // });
 
   const data = await loginUser({
     username: form.username,
     password: form.password,
   });
 
-  console.log("LOGIN RESPONSE:", data);
-  console.log("ACCESS TOKEN:", data?.access);
-  console.log("REFRESH TOKEN:", data?.refresh);
-  console.log("USER DATA:", data?.user);
+  // console.log("LOGIN RESPONSE:", data);
+  // console.log("ACCESS TOKEN:", data?.access);
+  // console.log("REFRESH TOKEN:", data?.refresh);
+  // console.log("USER DATA:", data?.user);
 
 localStorage.setItem("access", data.access);
 localStorage.setItem("refresh", data.refresh);
 localStorage.setItem("user", JSON.stringify(data.user));
 
-console.log("LOCALSTORAGE ACCESS:", localStorage.getItem("access"));
+// console.log("LOCALSTORAGE ACCESS:", localStorage.getItem("access"));
 
-console.log("LOCALSTORAGE USER:", localStorage.getItem("user"));
+// console.log("LOCALSTORAGE USER:", localStorage.getItem("user"));
 
   setModalOpen(false);
 
@@ -157,12 +157,12 @@ console.log("LOCALSTORAGE USER:", localStorage.getItem("user"));
     console.log("Going to /admin");
     navigate("/admin", { replace: true });
   } else {
-    console.log("Going to /dashboard");
-    navigate("/dashboard", { replace: true });
+    // console.log("Going to /dashboard");
+    navigate("/UnderDevelopment", { replace: true });
   }
 } catch (error) {
-  console.log("LOGIN ERROR FULL:", error);
-  console.log("RESPONSE DATA:", error.response?.data);
+  // console.log("LOGIN ERROR FULL:", error);
+  // console.log("RESPONSE DATA:", error.response?.data);
 
   setFormError(
     error.response?.data?.detail ||
@@ -171,7 +171,7 @@ console.log("LOCALSTORAGE USER:", localStorage.getItem("user"));
   );
 } finally {
   setLoading(false);
-  console.log("LOGIN PROCESS FINISHED");
+  // console.log("LOGIN PROCESS FINISHED");
 }
 };
 
